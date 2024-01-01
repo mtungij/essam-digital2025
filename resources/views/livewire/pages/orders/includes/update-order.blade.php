@@ -1,10 +1,19 @@
 <td class="p-4  space-x-2 whitespace-nowrap">
-                                <button  wire:click="edit({{ $order->id }})" type="button" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 3C5 3 1.73 7.11.64 9.29a2.77 2.77 0 000 1.42C1.73 12.89 5 17 10 17s8.27-4.11 9.36-6.29a2.77 2.77 0 000-1.42C18.27 7.11 15 3 10 3zM10 15c-3.12 0-5.91-2.51-7.05-5 1.14-2.49 3.93-5 7.05-5s5.91 2.51 7.05 5c-1.14 2.49-3.93 5-7.05 5zm0-8a3 3 0 100 6 3 3 0 000-6z"></path>
-        </svg>
-                                    Close Order
-                                </button>
+   {{-- @if (auth()->user()->position === 'admin') 
+    <button  wire:click="edit({{ $order->id }})" type="button" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 3C5 3 1.73 7.11.64 9.29a2.77 2.77 0 000 1.42C1.73 12.89 5 17 10 17s8.27-4.11 9.36-6.29a2.77 2.77 0 000-1.42C18.27 7.11 15 3 10 3zM10 15c-3.12 0-5.91-2.51-7.05-5 1.14-2.49 3.93-5 7.05-5s5.91 2.51 7.05 5c-1.14 2.49-3.93 5-7.05 5zm0-8a3 3 0 100 6 3 3 0 000-6z"></path>
+</svg>
+            Close Order
+        </button>
+    @endif()                          --}}
+   
+    @if ($isAdmin)
+    <button wire:click="edit({{ $order->id }})" class="bg-primary-700 text-white px-3 py-2 rounded-lg">
+        Close Order
+    </button>
+@endif
+
 
         <div wire:ignore.self id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
@@ -33,8 +42,23 @@
                     <option value="pending">pending</option>
                     <option value="completed">completed</option>
                             </select>
-                        </div>
+                        </div> 
                         
+                        <div class="col-span-6 sm:col-span-3">
+                <label for="order" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Task Cost</label>
+                <input type="text" readonly wire:model="work_cost" id="order" value=""
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    >
+              
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+                <label for="order" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Paid Amount</label>
+                <input type="text" wire:model="prepaid" id="order" value=""
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    >
+              
+            </div>
 
                        
                         <div class="sm:col-span-2">

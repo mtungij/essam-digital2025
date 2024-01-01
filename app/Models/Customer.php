@@ -18,6 +18,8 @@ class Customer extends Model
         "work_cost",
          "prepaid",
          "materials",
+         "profit",
+         "order_name",
         "status"
     ];
 

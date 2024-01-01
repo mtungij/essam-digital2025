@@ -35,6 +35,14 @@
                 <div class="text-red-500">@error('order') {{ $message }} @enderror</div>
             </div>
 
+            <div class="col-span-6 sm:col-span-3">
+                <label for="order" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Order Name</label>
+                <input type="text" wire:model="order_name" id="order" value=""
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    required>
+                <div class="text-red-500">@error('order_name') {{ $message }} @enderror</div>
+            </div>
+
             <!-- Work Cost -->
             <div class="col-span-6 sm:col-span-3">
                 <label for="work-cost" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span class="text-red-500">*</span>Work Cost</label>
@@ -44,6 +52,8 @@
                 
                 <div class="text-red-500">@error('work_cost') {{ $message }} @enderror</div>
             </div>
+
+            
 
             <!-- Expenses Cost -->
             <div class="col-span-6 sm:col-span-3">
@@ -63,6 +73,8 @@
                 <div class="text-red-500">@error('prepaid') {{ $message }} @enderror</div>
             </div>
 
+          
+
             <!-- Order Materials -->
             <div class="col-span-6">
                 <label for="order-materials" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span class="text-red-500">*</span>Order Materials</label>
@@ -72,6 +84,8 @@
                 <div class="text-red-500">@error('materials') {{ $message }} @enderror</div>
             </div>
         </div>
+
+        
 
         <div class="flex justify-center mt-6">
                 <!-- Loader -->

@@ -36,7 +36,7 @@ class Deposits extends Component
     }
 
     public function sendsms($phone, $message)
-    {
+    {   
         $api_key = 'gG1FSMH1SvFWGutz7XukCSu9.n'; 
     
         $ch = curl_init();

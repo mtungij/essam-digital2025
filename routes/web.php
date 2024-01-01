@@ -13,7 +13,11 @@ use App\Livewire\Pages\Members\Withdrawals;
 use App\Livewire\Pages\Payments\Method;
 use App\Livewire\Pages\Permission\UserPermission;
 use App\Livewire\Pages\Roles\Roles;
+use App\Livewire\Pages\MonthlyBalance\MonthlyBalance;
 use App\Livewire\Pages\Orders\PendingOrders;
+use App\Livewire\Pages\Maintenance\Maintenanc;
+use App\Livewire\Pages\Orders\Completed;
+use App\Livewire\Pages\Orders\ViewOrder;
 use App\Livewire\Pages\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -42,10 +46,19 @@ Route::get('users', UsersCreate::class)
 Route::get('members', Member::class)
     ->middleware(['auth', Member::class])
     ->name('members');
-
+ 
+    
     Route::get('pendingOrders', pendingOrders::class)
     ->middleware(['auth', pendingOrders::class])
     ->name('pendingOrders');
+
+    Route::get('completedOrders', completed::class)
+    ->middleware(['auth', completed::class])
+    ->name('completedOrders');
+
+    Route::get('maintenance', Maintenanc::class)
+    ->middleware(['auth', Maintenanc::class])
+    ->name('maintenance');
 
 Route::get('payments', Payments::class)
     ->middleware(['auth', payments::class])
@@ -55,6 +68,10 @@ Route::get('payments', Payments::class)
 Route::get('method', Method::class)
     ->middleware(['auth', Method::class])
     ->name('method');
+
+    Route::get('monthly_balance', MonthlyBalance::class)
+    ->middleware(['auth', MonthlyBalance::class])
+    ->name('monthly_balance');
 
 Route::get('TodayDeposit', Deposits::class)
     ->middleware(['auth', Deposits::class])
@@ -77,6 +94,11 @@ Route::get('permission', UserPermission::class)
 Route::get('roles', Roles::class)
     ->middleware(['auth', Roles::class])
     ->name('roles');
+
+    Route::get('/order/{id}', ViewOrder::class)
+    ->middleware(['auth', ViewOrder::class])
+    ->name('viewOrder');
+
 
 Route::get('settings', Settings::class)
     ->middleware(['auth', Settings::class])

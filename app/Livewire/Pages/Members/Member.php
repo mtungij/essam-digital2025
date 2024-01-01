@@ -15,17 +15,20 @@ class Member extends Component
 {
 
 
+
     use WithPagination;
 
    
     public $fname;
    
     public $order;
-    public $expenses;
-    public $prepaid = '0';
+    public $expenses=0;
+    public $prepaid = 0;
     public $materials;
+    public $order_name;
    
-    public $work_cost;
+   
+    public $work_cost = 0;
     public $phone = '255';
     
 
@@ -35,38 +38,44 @@ class Member extends Component
 
    
 
-   
+  
+    
  
 
     protected $rules = [
         'fname' => 'required',
        'order' => 'required',
        'work_cost' => 'required',
-       'prepaid' => 'required',
         'expenses' => 'required',
+        'prepaid' => 'required',
         'materials' => 'required',
         'phone' => 'sometimes',
+        'order_name' => 'required'
+
         
     ];
 
     public function save()
-    {
+{
+    sleep(2);
 
-        sleep(2);
+    $validated = $this->validate();
+
+    $validated['prepaid'] = (float) str_replace(',', '', $validated['prepaid']);
+    $validated['work_cost'] = (float) str_replace(',', '', $validated['work_cost']);
+    $validated['expenses'] = (float) str_replace(',', '', $validated['expenses'] ?? 0);
+    $validated['profit'] = $validated['work_cost'] - $validated['expenses'];
+
+    // dd($validated['profit']);
+    Customer::create($validated);
+
+    $this->reset('fname', 'work_cost', 'phone', 'prepaid', 'expenses', 'order_name', 'materials', 'order');
+
+    Toaster::success('Order created successfully!');
+}
 
 
-        $validated = $this->validate();
-
-        $validated['prepaid'] = str_replace(',', '', $validated['prepaid']);
-        $validated['work_cost'] = str_replace(',', '', $validated['work_cost']);
-        $validated['expenses'] = str_replace(',', '', $validated['expenses']);
-
-        Customer::create($validated);
-      $this->reset('fname','work_cost','phone','prepaid','expenses','materials','order');
-      Toaster::success('Order registered  successfully!');
-
-
-    }
+    
 public function changeDelete($memberid)
 {
       $this->selectuserID=$memberid;
@@ -110,6 +119,7 @@ public function update()
     $this->prepaid = str_replace(',', '', $this->prepaid);
     $this->work_cost = str_replace(',', '', $this->work_cost);
     $this->expenses = str_replace(',', '', $this->expenses);
+    $this->profit = $this->work_cost - $this->expenses;
 
     $this->member->update([
         'fname' => $this->fname,
@@ -119,6 +129,7 @@ public function update()
         'expenses' => $this->expenses,
         'materials' => $this->materials,
         'work_cost' => $this->work_cost,
+        'profit' =>$this->profit,
     ]);
 
     $this->dispatch('member-updated', ['memberId' => $this->member->id]);

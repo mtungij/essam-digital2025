@@ -13,12 +13,21 @@ class Payment extends Model
         "name",
 
     ];
-
+public function balance()
+{
+    return $this->hasOne(Balance::class);
+}
   
-
+// kila njia ya malipo yana balance moja
     public function receives():HasMany
     {
         return $this->hasMany(Receive::class);
+    }
+
+    // Kila njia za malipo zina expenses nyingi
+    public function maintanance()
+    {
+        return $this->hasMany(Maintanance::class);
     }
 
 }

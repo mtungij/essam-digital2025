@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('fname');
             $table->string('order');
-            $table->string('work_cost');
-            $table->string('prepaid');
+            $table->decimal('work_cost', 10, 2); // Change to decimal
+            $table->decimal('prepaid', 10, 2)->default(0); // Change to decimal
             $table->string('materials');
-            $table->string('expenses');
+            $table->decimal('expenses', 10, 2)->default(0); // Change to decimal
             $table->string('phone');
             $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

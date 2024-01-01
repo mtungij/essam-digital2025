@@ -56,6 +56,11 @@
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                 Prepaid payment
                             </th>
+
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                profit
+                            </th>
+
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                Order status
                             </th>
@@ -94,6 +99,8 @@
 
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->expenses)}}</td>
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->prepaid)}}</td>
+
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->profit)}}</td>
 
                             <td class="p-4 space-x-2 whitespace-nowrap">
     <span 
