@@ -12,12 +12,13 @@ class Customer extends Model
 
     protected $fillable = [
         "fname",
-        "nickname",
+        "order",
         "phone",
-        "gender",
-         "img",
-        "completed",
-        "status",
+        "expenses",
+        "work_cost",
+         "prepaid",
+         "materials",
+        "status"
     ];
 
     public function receives():HasMany

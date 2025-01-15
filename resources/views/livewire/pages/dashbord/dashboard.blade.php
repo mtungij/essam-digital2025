@@ -8,25 +8,7 @@
    </div>
    <div class="flow-root">
         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-            <li class="py-2 sm:py-4">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" src="{{ asset('assets/diversity.png') }}" alt="Diversity">
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate uppercase dark:text-white">
-                            Jumla ya Wanachama
-                        </p>
-                        <p class="text-sm font-serif font-thin text-blue-500 truncate dark:text-green-400">
-                            Wanaume:{{$this->GenderMale}} wanawake:{{$this->GenderFemale}}
-                        </p>
-                        
-                    </div>
-                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                       {{$this->TotalMembers}}
-                    </div>
-                </div>
-            </li>
+           
             <li class="py-2 sm:py-4">
                 <div class="flex items-center ">
                     <div class="flex-shrink-0">

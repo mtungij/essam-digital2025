@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('fname');
-            $table->string('nickname');
-            $table->string('gender');
+            $table->string('order');
+            $table->string('work_cost');
+            $table->string('prepaid');
+            $table->string('materials');
+            $table->string('expenses');
             $table->string('phone');
-            $table->string('status')->default('active');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

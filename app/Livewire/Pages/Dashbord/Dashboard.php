@@ -34,9 +34,7 @@ class Dashboard extends Component
 
     public $TotalMembers;
 
-    public $GenderMale;
-
-    public $GenderFemale;
+   
 
     public $OverFive;
 
@@ -68,8 +66,7 @@ class Dashboard extends Component
  
          $this->TotalMembers= Customer::count();
  
-         $this->GenderMale =Customer::where("gender" , "mwanaume")->count();
-         $this->GenderFemale = Customer::where("gender","mwanamke")->count();
+         
  
 
 
