@@ -1,7 +1,9 @@
- <td class="p-4 space-x-2 whitespace-nowrap">
+ <td class="p-4  space-x-2 whitespace-nowrap">
                                 <button  wire:click="edit({{ $member->id }})" type="button" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
-                                    Update
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3C5 3 1.73 7.11.64 9.29a2.77 2.77 0 000 1.42C1.73 12.89 5 17 10 17s8.27-4.11 9.36-6.29a2.77 2.77 0 000-1.42C18.27 7.11 15 3 10 3zM10 15c-3.12 0-5.91-2.51-7.05-5 1.14-2.49 3.93-5 7.05-5s5.91 2.51 7.05 5c-1.14 2.49-3.93 5-7.05 5zm0-8a3 3 0 100 6 3 3 0 000-6z"></path>
+        </svg>
+                                    View Order
                                 </button>
 
         <div wire:ignore.self id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -23,25 +25,43 @@
          
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
-                            <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jina La Kwanza</label>
+                            <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer Name</label>
                             <input wire:model="fname" type="text" name="fname" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required>
                         </div>
                         <div>
-                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Namba Ya simu</label>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
                             <input wire:model="phone" type="text" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Namba ya simu" required>
                         </div>
+                        
                         <div>
-                            <label for="nickname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jina Maarufu</label>
-                            <input wire:model="nickname" type="text" name="nickname" id="nickname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Jina maarufu" required>
-                        </div>
-                        <div>
-                            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jinsia</label>
-                            <select wire:model="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected="">Select category</option>
-                                <option value="mwanaume">Mwanaume</option>
-                                <option value="mwanamke">Mwanamke</option>
+                            <label for="order" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Order Type</label>
+                            <select wire:model="order" id="order" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <option value="">Select Order</option>
+                    <option value="general office">General Office</option>
+                    <option value="large format">Large Format</option>
+                    <option value="conica minolta">Conica Minolta</option>
+                    <option value="DTF">DTF</option>
                             </select>
                         </div>
+                        <div>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Order Cost</label>
+                            <input x-mask:dynamic="$money($input)"  wire:model="work_cost" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required>
+                          
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expenses Budget</label>
+                            <input x-mask:dynamic="$money($input)"  wire:model="expenses" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prepaid Payment</label>
+                            <input x-mask:dynamic="$money($input)"  wire:model="prepaid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required>
+                        </div>
+
+                        <div class="sm:col-span-2">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
+              <textarea id="message" wire:model="materials" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+</div>
                     </div>
                     <button wire:click.prevent='update' type="submit" class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>

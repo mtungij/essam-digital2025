@@ -1,14 +1,31 @@
 
-                <table wire:key="{{$member->id}}" class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
+<table wire:key="{{$member->id}}" class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                     <thead class="bg-gray-100 dark:bg-gray-700">
                         <tr>
                            
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Jina Maarufu
+                                customer Name
+                            </th>
+
+
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                Phone Number
                             </th>
 
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Nambari ya Simu
+                                Order Type
+                            </th>
+
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                Work Cost
+                            </th>
+
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                Expenses Cost
+                            </th>
+
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                Prepaid payment
                             </th>
                             
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">

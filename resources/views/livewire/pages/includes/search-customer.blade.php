@@ -35,25 +35,37 @@
             <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                     <thead class="bg-gray-100 dark:bg-gray-700">
                         <tr>
-                            <th scope="col" class="p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-all" aria-describedby="checkbox-1" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-all" class="sr-only">checkbox</label>
-                                </div>
+                           
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                Customer Name
                             </th>
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Jina kamili
+                               Phone Number
                             </th>
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Nambari ya Simu
+                                Order Type
                             </th>
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Jina Maarufu
+                                Order cost
                             </th>
+
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                Status
+                                Expenses cost
                             </th>
                            
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                Prepaid payment
+                            </th>
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                status
+                            </th>
+
+                            <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                               materials
+                            </th>
+
+                           
+
                             <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                 Actions
                             </th>
@@ -63,15 +75,8 @@
                         
                     @foreach ($members as $member )
                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-194556" aria-describedby="checkbox-1" type="checkbox"
-                                        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-194556" class="sr-only">checkbox</label>
-                                </div>
-                            </td>
+                           
                             <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-                            <img class="w-10 h-10 rounded-full" src="{{ Storage::url($member->img) }}" alt="Diversity">
                                 <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 <div class="text-base font-semibold text-gray-900 dark:text-white">{{$member->fname}}</div>
                                 <div class="text-sm font-normal text-gray-500 dark:text-gray-400">{{$member->created_at->diffForHumans()}}</div>
@@ -81,14 +86,32 @@
                             
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$member->phone}}</td>
                             
-                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$member->nickname}}</td>
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$member->order}}</td>
 
-                            <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->work_cost)}}</td>
+
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->expenses)}}</td>
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->prepaid)}}</td>
+
+                            <td class="p-4  space-x-2 whitespace-nowrap">
+                                <class   id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-yellow-500 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                                    Pending
+                                </class>
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$member->materials}}</td>
+
+                            <!-- <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex items-center">
-                                     <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>  {{$member->status}}
+                                     <div  class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"></div>  {{$member->status}}
                                 </div>
-                            </td>
-                           
+                            </td> -->
+          
+
+
+
+
+
+
                             
 
                             @include("livewire.pages.includes.update-member")

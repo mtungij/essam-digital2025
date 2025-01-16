@@ -22,7 +22,7 @@ class Member extends Component
    
     public $order;
     public $expenses;
-    public $prepaid = '0;
+    public $prepaid = '0';
     public $materials;
    
     public $work_cost;
@@ -30,6 +30,8 @@ class Member extends Component
     
 
     public $search;
+
+    public $selectuserID;
 
    
 
@@ -55,7 +57,9 @@ class Member extends Component
 
         $validated = $this->validate();
 
-       
+        $validated['prepaid'] = str_replace(',', '', $validated['prepaid']);
+        $validated['work_cost'] = str_replace(',', '', $validated['work_cost']);
+        $validated['expenses'] = str_replace(',', '', $validated['expenses']);
 
         Customer::create($validated);
       $this->reset('fname','work_cost','phone','prepaid','expenses','materials','order');
@@ -78,7 +82,7 @@ public function deleteUser()
     $user->delete();
     $this->selectuserID =0;
 
-    Toaster::success('umefanikiwa kufuta');
+    Toaster::success('umefanikiwa kufuta order');
 }
 
 public $showModal = false;
@@ -90,8 +94,12 @@ public function edit($id)
     $this->member = Customer::find($id);
     $this->fname = $this->member->fname;
     $this->phone = $this->member->phone;
-    $this->nickname = $this->member->nickname;
-    $this->gender = $this->member->gender;
+    $this->order = $this->member->order;
+    $this->work_cost = $this->member->work_cost;
+    $this->prepaid = $this->member->prepaid;
+    $this->expenses = $this->member->expenses;
+    $this->materials = $this->member->materials;
+
 
     
 }
@@ -99,12 +107,18 @@ public function edit($id)
 public function update()
 {
    
+    $this->prepaid = str_replace(',', '', $this->prepaid);
+    $this->work_cost = str_replace(',', '', $this->work_cost);
+    $this->expenses = str_replace(',', '', $this->expenses);
 
     $this->member->update([
         'fname' => $this->fname,
         'phone' => $this->phone,
-        'nickname' => $this->nickname,
-        'gender' => $this->gender,
+        'order' => $this->order,
+        'prepaid' => $this->prepaid,
+        'expenses' => $this->expenses,
+        'materials' => $this->materials,
+        'work_cost' => $this->work_cost,
     ]);
 
     $this->dispatch('member-updated', ['memberId' => $this->member->id]);
@@ -145,12 +159,8 @@ public function DownloadX()
 
         $members = Customer::latest()
             ->where('fname', 'like', "%{$this->search}%")
-
             ->orWhere('fname', 'like', "%{$this->search}%")
             ->paginate(3);
-
-           
-
         return view('livewire.pages.member', ['members' => $members]);
     }
 }

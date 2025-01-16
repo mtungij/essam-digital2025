@@ -13,6 +13,7 @@ use App\Livewire\Pages\Members\Withdrawals;
 use App\Livewire\Pages\Payments\Method;
 use App\Livewire\Pages\Permission\UserPermission;
 use App\Livewire\Pages\Roles\Roles;
+use App\Livewire\Pages\Orders\PendingOrders;
 use App\Livewire\Pages\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,10 @@ Route::get('users', UsersCreate::class)
 Route::get('members', Member::class)
     ->middleware(['auth', Member::class])
     ->name('members');
+
+    Route::get('pendingOrders', pendingOrders::class)
+    ->middleware(['auth', pendingOrders::class])
+    ->name('pendingOrders');
 
 Route::get('payments', Payments::class)
     ->middleware(['auth', payments::class])

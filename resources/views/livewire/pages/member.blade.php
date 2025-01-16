@@ -38,16 +38,17 @@
             <!-- Work Cost -->
             <div class="col-span-6 sm:col-span-3">
                 <label for="work-cost" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><span class="text-red-500">*</span>Work Cost</label>
-                <input type="number" wire:model="work_cost" id="work-cost" 
+                <input x-mask:dynamic="$money($input)" wire:model="work_cost" id="work-cost" 
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required>
+                
                 <div class="text-red-500">@error('work_cost') {{ $message }} @enderror</div>
             </div>
 
             <!-- Expenses Cost -->
             <div class="col-span-6 sm:col-span-3">
                 <label for="expenses-cost" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Expenses Cost</label>
-                <input type="number" wire:model="expenses" id="expenses-cost" value="0"
+                <input x-mask:dynamic="$money($input)"  wire:model="expenses" id="expenses-cost" value="0"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required>
                 <div class="text-red-500">@error('expenses') {{ $message }} @enderror</div>
@@ -56,7 +57,7 @@
             <!-- Prepaid Payment -->
             <div class="col-span-6 sm:col-span-3">
                 <label for="prepaid-payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prepaid Payment</label>
-                <input type="number" wire:model="prepaid" id="prepaid-payment" value="0"
+                <input x-mask:dynamic="$money($input)" wire:model="prepaid" id="prepaid-payment" value="0"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     required>
                 <div class="text-red-500">@error('prepaid') {{ $message }} @enderror</div>
@@ -91,4 +92,14 @@
                 </button>
         </div>
     </form>
+
+    @if ($members->isEmpty())
+    <h1 class="text-red-500">No Members Available</h1>
+@else
+   
+        @include('livewire.pages.includes.search-customer')
+ 
+@endif
+
+{{$members->links()}}
 </div>
