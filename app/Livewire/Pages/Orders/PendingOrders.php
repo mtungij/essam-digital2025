@@ -4,41 +4,48 @@ namespace App\Livewire\Pages\Orders;
 
 use App\Models\Customer;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Masmerise\Toaster\Toaster;
 
 class PendingOrders extends Component
 {
+    use WithPagination;
 
-    // public $selectOrderId;
-
-    // public function changeStatus($orderId)
-    // {
-    //     $this->selectOrderId = $orderId; // Store the order ID
-    // }
-
-    // public function update()
-    // {
-    //     $order = Customer::find($this->selectOrderId); // Use the stored order ID
-
-    //     if ($order && $order->status === 'pending') {
-    //         $order->status = 'completed'; // Update the order status
-    //         $order->save(); // Save changes to the database
-
-    //         $this->dispatchBrowserEvent('close-modal'); // Trigger modal close via JavaScript
-    //         session()->flash('message', 'Order updated successfully!');
-    //     } else {
-    //         session()->flash('error', 'Order not found or already processed.');
-    //     }
-    // }
-
-
+    public $search;
+    public $order;
+    public $status;
+    public $comments;
     
+    public function edit($id)
+{
+    $this->order = Customer::find($id);
+    $this->status = $this->order->status;
+    $this->comments = $this->order->comments;
+    
+}
+
+public function update()
+{
+
+    $this->order->update([
+        'status' => $this->status,
+        'comments' => $this->comments,
+        
+        
+    ]);
+
+    $this->dispatch('order-updated', ['OrderId' => $this->order->id]);
+    $this->reset();
+    
+
+    Toaster::success('order updated successfully');
+}
+
+   
     public function render()
     {
-        $orders = Customer::where('status','pending')
-        ->where('fname', 'like', "%{$this->search}%")
-        ->orWhere('fname', 'like', "%{$this->search}%")
-        ->paginate(3);
-        return view('livewire.pages.orders.pending-orders',['orders' => $orders]);
+        $orders = Customer::where('status' , 'pending')->paginate(5);
+
+        return view('livewire.pages.orders.pending-orders', ['orders' => $orders]);
     }
 }

@@ -125,7 +125,7 @@ public function update()
     $this->reset();
     
 
-    Toaster::success('updated');
+    Toaster::success('order updated successfully');
 }
 
 
