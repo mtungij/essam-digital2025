@@ -14,12 +14,13 @@ class AdminMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        if (auth()->check() && auth()->user()->position === 'admin') {
-            return $next($request);
-        }
-
-        
-        return redirect()->route('dashboard')->with('error', 'Access denied.');
+{
+    if (auth()->check() && auth()->user()->position === 'admin') {
+        return $next($request);
     }
+
+    // Redirect non-admins to homepage instead of dashboard
+    return redirect('/')->with('error', 'Access denied.');
+}
+
 }
