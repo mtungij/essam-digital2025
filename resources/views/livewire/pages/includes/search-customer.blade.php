@@ -93,7 +93,7 @@
                             
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$member->phone}}</td>
                             
-                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$member->order}}</td>
+                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap uppercase dark:text-white">{{$member->order}}</td>
 
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{number_format($member->work_cost)}}</td>
 

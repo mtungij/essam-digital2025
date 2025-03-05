@@ -108,7 +108,7 @@
     </form>
 
     @if ($members->isEmpty())
-    <h1 class="text-red-500">No Members Available</h1>
+    @include('livewire.pages.includes.no-customer')
 @else
    
         @include('livewire.pages.includes.search-customer')

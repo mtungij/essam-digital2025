@@ -20,7 +20,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('dash', absolute: false), navigate: true);
     }
 }; ?>
 
@@ -28,7 +28,9 @@ new #[Layout('layouts.guest')] class extends Component
 
 
         <div>
-        <div class="flex items-center justify-center min-h-screen  bg-gray-900">
+
+
+        <div class="flex items-center justify-center min-h-screen  bg-blue-900">
     <div class="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
